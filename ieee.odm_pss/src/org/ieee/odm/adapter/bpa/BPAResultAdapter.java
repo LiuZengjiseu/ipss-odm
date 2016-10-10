@@ -43,9 +43,10 @@ public class BPAResultAdapter extends AbstractODMAdapter{
 				
 				bus.setVoltageMag(Double.valueOf(strAry[1])/bus.getBaseVoltage()*1000);
 				bus.setVoltageAng(Double.valueOf(strAry[2])/180 * 3.1415926);
+				if(bus.getGenCode()==AclfGenCode.GEN_PV){
+					bus.setDesiredVoltMag(Double.valueOf(strAry[1])/bus.getBaseVoltage()*1000);
+				}
 				
-				bus.setDesiredVoltMag(Double.valueOf(strAry[1])/bus.getBaseVoltage()*1000);
-				bus.setDesiredVoltAng(Double.valueOf(strAry[2])/180 * 3.1415926);
 			} catch (ODMException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -63,7 +63,7 @@ public class BPA_xiagao_test {
 //		}
 //		System.out.println(genP);
 //		System.out.println(aclfNet.totalLoad(UnitType.PU));
-//		
+		
 		
 		System.out.println(AclfOutFunc.loadFlowSummary(aclfNet));
 		
