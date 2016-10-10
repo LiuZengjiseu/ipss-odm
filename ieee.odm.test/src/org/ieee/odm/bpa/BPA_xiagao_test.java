@@ -21,6 +21,7 @@ import com.interpss.core.aclf.AclfBus;
 import com.interpss.core.aclf.AclfNetwork;
 import com.interpss.core.algo.AclfMethod;
 import com.interpss.core.algo.LoadflowAlgorithm;
+import com.interpss.core.net.Branch;
 
 public class BPA_xiagao_test {
 //	@Test
@@ -44,14 +45,14 @@ public class BPA_xiagao_test {
 
 		AclfNetwork aclfNet = AclfParser2AclfNet.fx(parser, ODMAclfNetMapper.XfrBranchModel.InterPSS);
 		BPAResultAdapter resultAdapter=new BPAResultAdapter(aclfNet);
-		resultAdapter.parseInputFile("testdata/bpa/2013XiaGaoResult.txt");
+		
 		//swing bus
 		aclfNet.getBus("Bus2527").setGenP(1.441);
 		aclfNet.getBus("Bus2527").setGenQ(1.9582);
-//		LoadflowAlgorithm algo = CoreObjectFactory.createLoadflowAlgorithm(aclfNet);
-//		algo.setMaxIterations(0);
-//		 //use the loadflow algorithm to perform loadflow calculation
-//		algo.loadflow();
+		resultAdapter.parseInputFile("testdata/bpa/2013XiaGaoResult.txt");
+		LoadflowAlgorithm algo = CoreObjectFactory.createLoadflowAlgorithm(aclfNet);
+		 //use the loadflow algorithm to perform loadflow calculation
+		algo.loadflow();
 //		for(AclfBranch branch:aclfNet.getBranchList()){
 //			System.out.println(branch.toString());
 //		}
@@ -65,6 +66,11 @@ public class BPA_xiagao_test {
 //		
 		
 		System.out.println(AclfOutFunc.loadFlowSummary(aclfNet));
+		
+//		for(Branch branch:aclfNet.getBus("Bus6119").getToBranchList()){
+//			AclfBranch bra=(AclfBranch) branch;
+//			System.out.println(((AclfBus)bra.getFromBus()).getName()+"    "+bra.current(UnitType.PU));
+//		}
 //		parser.stdout();
 	}
 }

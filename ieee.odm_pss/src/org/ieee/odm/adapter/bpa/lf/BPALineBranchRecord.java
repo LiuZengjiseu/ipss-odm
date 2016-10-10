@@ -182,9 +182,6 @@ public class BPALineBranchRecord {
 			if(!strAry[17].equals("")){
 				desc= strAry[17];
 				BaseJaxbHelper.addNVPair(branchRec, "branch description", desc);
-				if(desc.equals("ÁãÖ§Â·")){
-					
-				}
 			}			
 		}
 		/**

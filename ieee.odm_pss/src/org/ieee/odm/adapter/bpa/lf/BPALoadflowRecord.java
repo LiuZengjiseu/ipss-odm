@@ -152,7 +152,7 @@ public class BPALoadflowRecord {
 			}
 			else if(str.trim().startsWith("R")){
 				ODMLogger.getLogger().fine("load transformer adjustment data");
-				new BPAXfrBranchRecord().processXfrAdjustData(str, parser);
+				//new BPAXfrBranchRecord().processXfrAdjustData(str, parser);
 			}
 			else if( str.trim().startsWith("LD")||str.trim().startsWith("LM") ||
 					 str.trim().startsWith("BD")||str.trim().startsWith("BM")){
