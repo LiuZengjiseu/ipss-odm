@@ -70,32 +70,16 @@ public class BPAResultAdapter extends AbstractODMAdapter{
 			return strAry;
 		}
 		else{
-			StringTokenizer itr = new StringTokenizer(str);
-			//name
-			name=itr.nextToken();
-			voltage=itr.nextToken();
+			name=ODMModelStringUtil.getStringReturnEmptyString(str,1, 5); 
+			int chineseCharNum=ODMModelStringUtil.getChineseCharNum(name)+1;
+			voltage	=ODMModelStringUtil.getStringReturnEmptyString(str,10-chineseCharNum, 16-chineseCharNum); 	
 			strAry[0]=name+voltage;
 			
-			//angle
-			String str2=itr.nextToken();
-			if (str2.length() > 10) {
-				strAry[1]=str2.substring(0,str2.length()-9);
-				strAry[2] = str2.substring(str2.length() - 6, str2.length() - 1);
-			} else {
-				strAry[1]=str2.substring(0,str2.length()-3);
-				String angle = itr.nextToken();
-				strAry[2] = angle.substring(0, angle.length() - 1);
-			}
+			strAry[1]=ODMModelStringUtil.getStringReturnEmptyString(str,17-chineseCharNum, 23-chineseCharNum);
+			strAry[2]=ODMModelStringUtil.getStringReturnEmptyString(str,27-chineseCharNum, 31-chineseCharNum);
 			
-			//mag
-//			int count = itr.countTokens()-2;
-//			for (int i = 0; i < count; i++){
-//				itr.nextToken();
-//			}
-//				
-//			strAry[1]=itr.nextToken().substring(0,5);
 		}
-		//System.out.println(strAry[0]);
+		
 		return strAry;
 	}
 }
